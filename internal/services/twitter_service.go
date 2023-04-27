@@ -45,9 +45,7 @@ func SendTweet() error {
 }
 
 func postTweet(dto dto.PostTextDto) {
-	tweet := "Olá, mundo! #golang #twitterapi"
 	values := url.Values{}
-	values.Set("status", tweet)
 	values.Set("tweet_mode", "extended")
 
 	client := authenticate()
