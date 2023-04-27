@@ -3,14 +3,14 @@ package twitterService
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 
 	"github.com/dghubble/oauth1"
 	json "github.com/dustin/gojson"
 
-	"gpt-twitter-integration/internal/modules/dto"
+	"gpt-twitter-integration/internal/dto"
 	"gpt-twitter-integration/pkg/env"
 )
 
@@ -26,7 +26,7 @@ func authenticate() *http.Client {
 	}
 	defer resp.Body.Close()
 
-	_, err = ioutil.ReadAll(resp.Body)
+	_, err = io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println(err)
 		return nil

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	twitterService "gpt-twitter-integration/internal/modules/services"
+	twitterService "gpt-twitter-integration/internal/services"
 	"gpt-twitter-integration/pkg/env"
 )
 
