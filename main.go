@@ -1,16 +1,16 @@
 package main
 
 import (
-	"fmt"
-
-	twitterService "gpt-twitter-integration/internal/services"
+	gptService "gpt-twitter-integration/internal/services/gpt"
+	twitterService "gpt-twitter-integration/internal/services/twitter"
 	"gpt-twitter-integration/pkg/env"
 )
 
 func main() {
-	fmt.Println("Say! hello!")
 
 	env.Init()
+
+	gptService.Execute()
 
 	err := twitterService.SendTweet()
 	if err != nil {

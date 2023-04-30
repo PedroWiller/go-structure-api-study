@@ -1,4 +1,4 @@
-# gpt-twitter-integration-worker
+# gpt-twitter-integration
 
 # Integration between openai and twitter
 
