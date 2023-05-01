@@ -1,4 +1,4 @@
-package httprequest
+package httpRequest
 
 import (
 	"bytes"
@@ -6,31 +6,33 @@ import (
 	"net/http"
 )
 
-type Request struct {
-	Token string `json:"token"`
-	Url   string `json:"url"`
+type RequestParams struct {
+	Token string
+	Url   string
 }
 
-func (r Request) createHeaders(headers *http.Header) {
+func (r RequestParams) createHeaders(headers *http.Header) {
 	headers.Add("Content-Type", "application/json")
 	headers.Add("Authorization", "Bearer "+r.Token)
 }
 
-func (r Request) Post(body interface{}, response *interface{}) error {
+func (r RequestParams) Post(body interface{}) (error, any) {
 	headers := http.Header{}
 	r.createHeaders(&headers)
 
 	requestBody, _ := json.Marshal(body)
 	resp, err := http.Post(r.Url, "application/json", bytes.NewReader(requestBody))
 	if err != nil {
-		return err
+		return err, nil
 	}
 
 	defer resp.Body.Close()
-	err = json.NewDecoder(resp.Body).Decode(&response)
+
+	var T any
+	err = json.NewDecoder(resp.Body).Decode(&T)
 	if err != nil {
-		return err
+		return err, nil
 	}
 
-	return nil
+	return nil, T
 }

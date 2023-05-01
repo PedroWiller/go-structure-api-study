@@ -1,38 +1,27 @@
 package gptService
 
 import (
-	"bytes"
-	"encoding/json"
-	"fmt"
-	"net/http"
+	"gpt-twitter-integration/internal/dto"
+	"gpt-twitter-integration/pkg/env"
+	httpRequest "gpt-twitter-integration/pkg/httpRequest"
 )
 
-func CreateMessae() {
-	apiKey := "YOUR_API_KEY_HERE"
-	modelID := "YOUR_MODEL_ID_HERE"
-	prompt := "YOUR_PROMPT_HERE"
-	headers := http.Header{}
-	headers.Add("Content-Type", "application/json")
-	headers.Add("Authorization", "Bearer "+apiKey)
-	body := struct {
-		Prompt string `json:"prompt"`
-		Model  string `json:"model"`
-	}{Prompt: prompt, Model: modelID}
-	requestBody, _ := json.Marshal(body)
-	resp, err := http.Post("https://api.openai.com/v1/engines/davinci-codex/completions", "application/json", bytes.NewReader(requestBody))
+func CreateMessae(message string) ([]dto.Choices, error) {
+	apiKey := env.OpenAiKey
+	url := env.OpenAiUrl
+	htp := httpRequest.RequestParams{Token: apiKey, Url: url}
+
+	body := dto.Prompt{
+		Prompt: message,
+		Model:  env.OpenAiModel,
+	}
+
+	err, res := htp.Post(body)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
-	defer resp.Body.Close()
-	var response struct {
-		Choices []struct {
-			Text string `json:"text"`
-		} `json:"choices"`
-	}
-	err = json.NewDecoder(resp.Body).Decode(&response)
-	if err != nil {
-		panic(err)
-	}
-	generatedText := response.Choices[0].Text
-	fmt.Println(generatedText)
+
+	response := res.(dto.ChoicesReponse)
+
+	return response.Choices, nil
 }

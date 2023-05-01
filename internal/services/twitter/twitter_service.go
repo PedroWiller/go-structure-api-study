@@ -35,16 +35,7 @@ func authenticate() *http.Client {
 	return httpClient
 }
 
-func SendTweet() error {
-	message := dto.PostTextDto{
-		Text: "Welcome to the desert of the real.",
-	}
-	postTweet(message)
-
-	return nil
-}
-
-func postTweet(dto dto.PostTextDto) {
+func SendTweet(dto dto.PostTextDto) error {
 	values := url.Values{}
 	values.Set("tweet_mode", "extended")
 
@@ -56,9 +47,9 @@ func postTweet(dto dto.PostTextDto) {
 
 	resp, err := client.Post(fmt.Sprintf("%s/2/tweets", env.TwitterUrl), "application/json", buf)
 	if err != nil {
-		fmt.Printf("Response body: %s", err.Error())
-
-		return
+		return err
 	}
 	defer resp.Body.Close()
+
+	return nil
 }

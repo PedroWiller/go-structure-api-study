@@ -8,6 +8,9 @@ var (
 	AccessToken       string
 	AccessTokenSecret string
 	TwitterUrl        string
+	OpenAiKey         string
+	OpenAiModel       string
+	OpenAiUrl         string
 )
 
 func Init() {
@@ -16,4 +19,7 @@ func Init() {
 	AccessToken = os.Getenv("TWITTER_ACCESS_TOKEN")
 	AccessTokenSecret = os.Getenv("TWITTER_ACCESS_TOKEN_SECRET")
 	TwitterUrl = os.Getenv("TWITTER_URL")
+	OpenAiKey = os.Getenv("OPENAI_KEY")
+	OpenAiModel = os.Getenv("OPENAI_MODEL")
+	OpenAiUrl = os.Getenv("OPENAI_URL")
 }
