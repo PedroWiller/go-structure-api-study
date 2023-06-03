@@ -7,9 +7,8 @@ In order to study, a project designed to generate a message through the openai A
 - Parameterized themes to be selected, with treatments not to repeat
 - Send message once a day
 
-##Code
+```
 meuprojeto/
-
   |- cmd/
   |   |- meuapp/
   |       |- main.go
@@ -46,7 +45,7 @@ meuprojeto/
   |- README.md
   |- go.mod
   |- go.sum
-
+ ```
 
 
 ## References
