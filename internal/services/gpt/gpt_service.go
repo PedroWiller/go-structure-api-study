@@ -15,7 +15,7 @@ import (
 )
 
 func CreateMessae(message string) ([]dto.Choices, error) {
-	apiKey := "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"
+	apiKey := ""
 	url := "https://api.openai.com/v1/engines/davinci-codex/completions"
 	htp := httpRequest.RequestParams{Token: apiKey, Url: url}
 
