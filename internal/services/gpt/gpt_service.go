@@ -35,7 +35,7 @@ func CreateMessae(message string) ([]dto.Choices, error) {
 }
 
 func TestMessage(prompt string) error {
-	apiKey := "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"
+	apiKey := ""
 
 	ctx := context.Background()
 	client := gpt3.NewClient(apiKey)
@@ -55,7 +55,7 @@ func TestMessage(prompt string) error {
 }
 
 func Execute() {
-	apiKey := "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"
+	apiKey := ""
 	model := "gpt-3.5-turbo" // ou outro modelo disponível
 
 	// Dados da solicitação
