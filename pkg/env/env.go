@@ -23,3 +23,4 @@ func Init() {
 	OpenAiModel = os.Getenv("OPENAI_MODEL")
 	OpenAiUrl = os.Getenv("OPENAI_URL")
 }
+	
