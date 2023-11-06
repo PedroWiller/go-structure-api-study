@@ -11,6 +11,8 @@ var (
 	OpenAiKey         string
 	OpenAiModel       string
 	OpenAiUrl         string
+	WeatherApiKey     string
+	WeatherApiUrl     string
 )
 
 func Init() {
@@ -22,5 +24,6 @@ func Init() {
 	OpenAiKey = os.Getenv("OPENAI_KEY")
 	OpenAiModel = os.Getenv("OPENAI_MODEL")
 	OpenAiUrl = os.Getenv("OPENAI_URL")
+	WeatherApiKey = os.Getenv("WEATHER_API_KEY")
+	WeatherApiUrl = os.Getenv("WEATHER_API_URL")
 }
-	

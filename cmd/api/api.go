@@ -13,9 +13,9 @@ func Start() {
 	app := fiber.New()
 	health.Main(app)
 
-	api := fiber.New()
-	routes.Init(api)
-	app.Mount("/api/v1", api)
+	api := *fiber.New()
+	routes.Init(&api)
+	app.Mount("/api/v1", &api)
 
 	log.Fatal(app.Listen(":5003"))
 }
